@@ -1,19 +1,22 @@
 const mysql=require("mysql");
-​
-const connection=mysql.createConnection({
-    host:"localhost",
-    port:8889,
-    user:"root",
-    password:"root",
-    database:"burgers_db"
-});
-​
+
+var connection;
+
+if(process.env.JAWSDB_URL){
+    connection = mysql.createConnection({
+        host:"localhost",
+        port:8889,
+        user:"root",
+        password:"root",
+        database:"burgers_db"
+    });
+};
 connection.connect(function(err){
-    if(err) {
+    if(err){
         console.log(err);
     } else {
-        console.log("Connected to MySQL successfully!");
+        console.log("connected")
     }
 });
 
-module.exports = connection;
+module.exports= connection;
